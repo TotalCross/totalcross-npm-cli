@@ -13,13 +13,18 @@ $ npm install
 2. Run main script
 
 ``` 
-$ node index.js install
+$ node index.js --create
 ```
 
 3. Test another commands
 
 ``` 
-$ node index.js deploy
+$ node index.js --pack
+```
+and: 
+
+``` 
+$ node index.js --deploy
 ```
 
 ## Modelling
