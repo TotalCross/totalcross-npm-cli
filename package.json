@@ -1,0 +1,26 @@
+{
+  "name": "totalcross-cli",
+  "version": "1.0.0",
+  "description": "TotalCross CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TotalCross",
+    "CLI"
+  ],
+  "author": "Allan C.",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "commander": "^4.1.1",
+    "enquirer": "^2.3.4",
+    "fs-extra": "^8.1.0",
+    "replace-in-file": "^5.0.2",
+    "request": "^2.88.0",
+    "scp": "0.0.3",
+    "util": "^0.12.1",
+    "xml-js": "^1.6.11"
+  }
+}
