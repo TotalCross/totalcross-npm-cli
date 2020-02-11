@@ -1,9 +1,18 @@
 const interface = require('../lib/interface');
 const filesystem = require('../lib/filesystem');
+const request = require('../lib/request');
 
 module.exports = async () => {
+    let current = await filesystem.current('./resources/maven-metadata.xml');
 
-    let versions = await filesystem.versions('./resources/maven-metadata.xml');
+    let updated = await request.updated();
+    
+    let versions;
+    if (current == updated) {
+        versions = await filesystem.versions('./resources/maven-metadata.xml');
+    } else {
+        versions = await request.versions();
+    }
 
     let response = await interface.create(versions);    
 
