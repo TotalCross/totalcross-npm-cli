@@ -18,7 +18,7 @@
     "enquirer": "^2.3.4",
     "fs-extra": "^8.1.0",
     "replace-in-file": "^5.0.2",
-    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "scp": "0.0.3",
     "util": "^0.12.1",
     "xml-js": "^1.6.11"

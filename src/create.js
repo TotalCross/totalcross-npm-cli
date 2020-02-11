@@ -3,9 +3,9 @@ const filesystem = require('../lib/filesystem');
 
 module.exports = async () => {
 
-    let versions = await filesystem.versions('resources/maven-metadata.xml')
+    let versions = await filesystem.versions('./resources/maven-metadata.xml');
 
-    let response = await interface.create([versions[0], versions[1], versions[2], versions[3], versions[4]]);    
+    let response = await interface.create(versions);    
 
     let path = '.';
     
