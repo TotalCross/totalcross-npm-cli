@@ -1,8 +1,7 @@
 {
-  "name": "totalcross-cli-project",
-  "version": "1.0.4",
+  "name": "totalcross-cli",
+  "version": "1.1.0",
   "description": "TotalCross CLI",
-  "main": "index.js",
   "bin": {
     "totalcross": "./index.js"
   },
@@ -19,14 +18,11 @@
     "child_process": "^1.0.2",
     "commander": "^4.1.1",
     "enquirer": "^2.3.4",
-    "fs": "0.0.1-security",
     "fs-extra": "^8.1.0",
-    "lstat": "^1.0.0",
     "replace-in-file": "^5.0.2",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "scp": "0.0.3",
-    "util": "^0.12.1",
     "xml-js": "^1.6.11"
   }
 }
