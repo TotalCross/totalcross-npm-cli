@@ -15,7 +15,7 @@ module.exports = async () => {
     filesystem.make(path + '/src/main/resources');
     filesystem.make(path + '/src/test');
     
-    filesystem.setup('./resources/pom.xml', path + '/pom.xml', response.groupId, response.artifactId, response.version, response.platforms, response.activationKey);
-    filesystem.setup('./resources/Sample.java', `${package}/${response.artifactId}.java`, response.groupId, response.artifactId, response.version, response.platforms, response.activationKey);
-    filesystem.setup('./resources/TestSampleApplication.java',`${package}/Run${response.artifactId}Application.java`, response.groupId, response.artifactId, response.version, response.platforms, response.activationKey);
+    filesystem.setup('./resources/pom.xml', path + '/pom.xml', response);
+    filesystem.setup('./resources/Sample.java', `${package}/${response.artifactId}.java`, response);
+    filesystem.setup('./resources/TestSampleApplication.java',`${package}/Run${response.artifactId}Application.java`, response);
 }
