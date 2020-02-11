@@ -1,6 +1,9 @@
-const create = require('./src/create');
-const pack = require('./src/pack');
-const deploy = require('./src/deploy');
+#!/usr/bin/env node
+global.__basedir = __dirname;
+
+const create = require(__basedir + '/src/create');
+const pack = require(__basedir + '/src/pack');
+const deploy = require(__basedir + '/src/deploy');
 
 const program = require('commander');
 

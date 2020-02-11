@@ -1,5 +1,5 @@
-const interface = require('../lib/interface');
-const terminal = require('../lib/terminal');
+const interface = require(__basedir + '/lib/interface');
+const terminal = require(__basedir + '/lib/terminal');
 
 module.exports  = async () => {
     let response = await interface.deploy();
