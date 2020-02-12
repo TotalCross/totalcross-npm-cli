@@ -1,8 +1,14 @@
 const interface = require(__basedir + '/lib/interface');
 const filesystem = require(__basedir + '/lib/filesystem');
 const request = require(__basedir + '/lib/request');
+const local = require(__basedir + '/lib/local');
 
 module.exports = async () => {
+    if(request.valid(await local.token())) {
+        console.log("Invalid token, please run:\n\n$ totalcross login\n\nor totalcross --help for more information");
+        return -1
+    };
+
     let current = await filesystem.current(__basedir + '/resources/maven-metadata.xml');
 
     let updated = await request.updated();
