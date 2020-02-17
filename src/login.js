@@ -4,6 +4,6 @@ const local = require(__basedir + '/lib/local');
 
 module.exports = async () => {
     var credentials = await interface.login()
-    var token = await request.login(credentials);
-    local.save(token);
+    var access = await request.login(credentials);
+    local.save(access.token, access.key);
 }
