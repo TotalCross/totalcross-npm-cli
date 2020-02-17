@@ -1,34 +1,37 @@
-# TotalCross CLI POC
+#devfirst
 
-POC for P&C activity
+# TotalCross CLI
 
-## Usage
+A minimal version of TotalCross CLI
 
-1. Install dependencies
+## User usage
 
-``` 
-$ npm install
+1. Install with npm:
+```console
+$ npm install --global totalcross-cli
 ```
 
-2. Run main script
-
-``` 
-$ node index.js --create
+2. For the first time, please:
+```console
+$ totalcross register
 ```
 
-3. Test another commands
-
-``` 
-$ node index.js --pack
-```
-and: 
-
-``` 
-$ node index.js --deploy
+3. Please, login to access another commands:
+```console
+$ totalcross login
 ```
 
-## Modelling
+4. Create a new project:
+```console
+$ totalcross create
+```
 
-Architectural modeling after initial feasibility analysis
+5. Build your app:
+```console
+$ totalcross packaging
+```
 
-![alt text](https://i.imgur.com/AW0ySxO.png)
+6. Deploy (*-linux_arm* feature):
+```console
+$ totalcross deploy
+```
