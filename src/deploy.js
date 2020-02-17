@@ -1,6 +1,7 @@
 const interface = require(__basedir + '/lib/interface');
 const terminal = require(__basedir + '/lib/terminal');
 const request = require(__basedir + '/lib/request');
+const local = require(__basedir + '/lib/local');
 
 module.exports  = async () => {
     if(!request.valid(await local.token())) {
