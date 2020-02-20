@@ -1,10 +1,9 @@
 const interface = require(__basedir + '/lib/interface');
 const filesystem = require(__basedir + '/lib/filesystem');
 const request = require(__basedir + '/lib/request');
-const local = require(__basedir + '/lib/local');
 
 module.exports = async () => {
-    if(!request.valid(await local.token())) {
+    if(await request.valid(await filesystem.token()) == false) {
         console.log("Invalid token, please run:\n\n$ totalcross login\n\nor totalcross --help for more information");
         return -1
     };
@@ -29,7 +28,7 @@ module.exports = async () => {
     filesystem.make(path + '/src/main/resources');
     filesystem.make(path + '/src/test');
     
-    filesystem.setup(__basedir + '/resources/pom.xml', path + '/pom.xml', response, await local.key());
-    filesystem.setup(__basedir + '/resources/Sample.java', `${package}/${response.artifactId}.java`, response, await local.key());
-    filesystem.setup(__basedir + '/resources/TestSampleApplication.java',`${package}/Run${response.artifactId}Application.java`, response, await local.key());
+    filesystem.setup(__basedir + '/resources/pom.xml', path + '/pom.xml', response, await filesystem.key());
+    filesystem.setup(__basedir + '/resources/Sample.java', `${package}/${response.artifactId}.java`, response, await filesystem.key());
+    filesystem.setup(__basedir + '/resources/TestSampleApplication.java',`${package}/Run${response.artifactId}Application.java`, response, await filesystem.key());
 }

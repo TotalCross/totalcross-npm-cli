@@ -1,9 +1,9 @@
 const terminal = require(__basedir + '/lib/terminal');
 const request = require(__basedir + '/lib/request');
-const local = require(__basedir + '/lib/local');
+const filesystem = require(__basedir + '/lib/filesystem');
 
 module.exports  = async () => {
-    if(!request.valid(await local.token())) {
+    if(await request.valid(await filesystem.token()) == false) {
         console.log("Invalid token, please run:\n\n$ totalcross login\n\nor totalcross --help for more information");
         return -1
     };
