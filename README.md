@@ -23,12 +23,12 @@ $ totalcross login
 
 4. Create a new project:
 ```console
-$ totalcross create
+$ totalcross create && cd HelloWorld
 ```
 
 5. Build your app:
 ```console
-$ totalcross packaging
+$ totalcross package
 ```
 
 6. Deploy (*-linux_arm* feature):

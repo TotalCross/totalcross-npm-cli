@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 global.__basedir = __dirname;
 
-const create = require(__basedir + '/src/create');
-const packaging = require(__basedir + '/src/packaging');
-const deploy = require(__basedir + '/src/deploy');
-const login = require(__basedir + '/src/login');
-const register = require(__basedir + '/src/register');
-
+const core = require('totalcross-core-dev')
+const interface = require(__basedir + '/lib/interface')
 const program = require('commander');
 
 const run = async () => { 
@@ -14,38 +10,86 @@ const run = async () => {
     .command('create')
     .description('create new TotalCross project')
     .action(async () => {
-        await create();
+        versions = await core.versions()
+        let options = await interface.create([versions[0], versions[1], versions[2], versions[3], versions[4]]);    
+        core.auth()
+        .then((response) => {
+            console.log(response);
+            core.create(options)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
-
+    
     program
-    .command('packaging')
-    .description('create package')
+    .command('package')
+    .description('runs mvn package')
     .action(async () => {
-        await packaging();
+        console.log(response);
+        core.package()
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
-
+    
     program
     .command('deploy')
     .description('deploy your application')
     .action(async () => {
-        await deploy();
+        let options = await interface.deploy();
+        core.deploy({
+            username: options.username,
+            host: options.host,
+            path: options.path
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
-
+    
     program
     .command('login')
-    .description('')
+    .description('login into your TotalCross account')
     .action(async () => {
-        await login();
+        var options = await interface.login()
+        core.login(options)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
-
+    
     program
     .command('register')
-    .description('')
+    .description('create TotalCross account')
     .action(async () => {
-        await register();
+        var options = await interface.register()
+        core.register(options)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
 
-    await program.parse(process.argv);
+    program.version('TotalCross CLI 1.1.5')
+    program.parse(process.argv);
 }
 
 run();

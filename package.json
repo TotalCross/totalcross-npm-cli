@@ -1,6 +1,6 @@
 {
   "name": "totalcross-cli",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "TotalCross CLI",
   "bin": {
     "totalcross": "./index.js"
@@ -24,6 +24,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "scp": "0.0.3",
+    "totalcross-core-dev": "0.0.8",
     "xml-js": "^1.6.11"
   }
 }
