@@ -1,6 +1,6 @@
 {
   "name": "@totalcross/totalcross-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TotalCross CLI",
   "bin": {
     "totalcross": "./index.js"
