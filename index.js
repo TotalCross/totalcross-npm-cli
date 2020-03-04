@@ -4,14 +4,20 @@ global.__basedir = __dirname;
 const core = require('totalcross-core-dev')
 const interface = require(__basedir + '/lib/interface')
 const program = require('commander');
+const ora = require('ora');
+
 
 const run = async () => { 
+    
     program
     .command('create')
     .description('create new TotalCross project')
     .action(async () => {
-        versions = await core.versions()
-        let options = await interface.create([versions[0], versions[1], versions[2], versions[3], versions[4]]);    
+        
+        let versions = await core.latestVersions()
+
+        let options = await interface.create(versions)
+
         core.auth()
         .then((response) => {
             console.log(response);
@@ -24,7 +30,7 @@ const run = async () => {
             })
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error.message);
         })
     });
     
@@ -32,13 +38,16 @@ const run = async () => {
     .command('package')
     .description('runs mvn package')
     .action(async () => {
-        console.log(response);
+        let spinner = ora('Packaging')
+        spinner.start();
         core.package()
         .then((response) => {
-            console.log(response);
+            spinner.stop();
+            console.log('Packaging success!');
         })
         .catch((error) => {
-            console.log(error);
+            spinner.stop();
+            console.log('Packaging failed');
         })
     });
     
@@ -56,7 +65,7 @@ const run = async () => {
             console.log(response);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error.message);
         })
     });
     
@@ -70,7 +79,7 @@ const run = async () => {
             console.log(response);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error.message);
         })
     });
     
@@ -79,16 +88,28 @@ const run = async () => {
     .description('create TotalCross account')
     .action(async () => {
         var options = await interface.register()
+
+        if (options.password !== options.confirm) {
+            console.log('Password and confirmation are wrong');
+            return -1;
+        }
+        
+        if (options.privacy === 'I do not agree') {
+            console.log('Totalcross CLI requires the Privacy Policy to be accepted');
+            return -1;
+        }
+
+
         core.register(options)
         .then((response) => {
             console.log(response);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error.message);
         })
     });
 
-    program.version('TotalCross CLI 1.1.5')
+    program.version('TotalCross CLI 1.1.6')
     program.parse(process.argv);
 }
 

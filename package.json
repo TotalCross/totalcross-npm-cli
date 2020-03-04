@@ -1,6 +1,6 @@
 {
-  "name": "totalcross-cli",
-  "version": "1.1.5",
+  "name": "totalcross",
+  "version": "1.0.0",
   "description": "TotalCross CLI",
   "bin": {
     "totalcross": "./index.js"
@@ -20,11 +20,12 @@
     "configstore": "^5.0.0",
     "enquirer": "^2.3.4",
     "fs-extra": "^8.1.0",
+    "ora": "^4.0.3",
     "replace-in-file": "^5.0.2",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "scp": "0.0.3",
-    "totalcross-core-dev": "0.0.8",
+    "totalcross-core-dev": "0.0.13",
     "xml-js": "^1.6.11"
   }
 }
