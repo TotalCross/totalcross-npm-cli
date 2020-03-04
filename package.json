@@ -1,26 +1,32 @@
 {
-  "name": "totalcross-cli",
-  "version": "1.0.0",
+  "name": "@totalcross/totalcross-cli",
+  "version": "1.1.0",
   "description": "TotalCross CLI",
-  "main": "index.js",
+  "bin": {
+    "totalcross": "./index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\""
   },
   "keywords": [
     "TotalCross",
-    "CLI"
+    "CLI",
+    "SDK"
   ],
-  "author": "Allan C.",
-  "license": "ISC",
+  "author": "Allan C., @acmlira",
+  "license": "MIT",
   "dependencies": {
     "child_process": "^1.0.2",
     "commander": "^4.1.1",
+    "configstore": "^5.0.0",
     "enquirer": "^2.3.4",
     "fs-extra": "^8.1.0",
+    "ora": "^4.0.3",
     "replace-in-file": "^5.0.2",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
     "scp": "0.0.3",
-    "util": "^0.12.1",
+    "totalcross-core-dev": "0.0.13",
     "xml-js": "^1.6.11"
   }
 }
