@@ -109,7 +109,7 @@ const run = async () => {
         })
     });
 
-    program.version('TotalCross CLI 1.1.6')
+    program.version('TotalCross CLI v1 (Alpha)')
     program.parse(process.argv);
 }
 
