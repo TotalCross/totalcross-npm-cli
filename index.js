@@ -5,6 +5,7 @@ const core = require('totalcross-core-dev')
 const interface = require(__basedir + '/lib/interface')
 const program = require('commander');
 const ora = require('ora');
+const chalk = require('chalk');
 
 
 const run = async () => { 
@@ -16,21 +17,25 @@ const run = async () => {
         
         let versions = await core.latestVersions()
 
+        console.log(chalk.bold('New project wizard!\n'));
+
         let options = await interface.create(versions)
+
+        console.log('\n');
 
         core.auth()
         .then((response) => {
-            console.log(response);
+            console.log(chalk.green(response));
             core.create(options)
             .then((response) => {
-                console.log(response);
+                console.log(chalk.green(response));
             })
             .catch((error) => {
-                console.log(error);
+                console.log(chalk.red(error));
             })
         })
         .catch((error) => {
-            console.log(error.message);
+            console.log(chalk.red(error.message));
         })
     });
     
@@ -43,11 +48,11 @@ const run = async () => {
         core.package()
         .then((response) => {
             spinner.stop();
-            console.log('Packaging success!');
+            console.log(chalk.green('Packaging success!'));
         })
         .catch((error) => {
             spinner.stop();
-            console.log('Packaging failed');
+            console.log(chalk.red('Packaging failed'));
         })
     });
     
@@ -55,17 +60,22 @@ const run = async () => {
     .command('deploy')
     .description('deploy your application')
     .action(async () => {
+        console.log(chalk.bold('Deploy wizard!\n'));
+
         let options = await interface.deploy();
+
+        console.log('\n');
+
         core.deploy({
             username: options.username,
             host: options.host,
             path: options.path
         })
         .then((response) => {
-            console.log(response);
+            console.log(chalk.green(response));
         })
         .catch((error) => {
-            console.log(error.message);
+            console.log(chalk.red(error.message));
         })
     });
     
@@ -73,13 +83,18 @@ const run = async () => {
     .command('login')
     .description('login into your TotalCross account')
     .action(async () => {
+        console.log(chalk.bold('Please login into your TotalCross account:\n'));
+
         var options = await interface.login()
+
+        console.log('\n');
+
         core.login(options)
         .then((response) => {
-            console.log(response);
+            console.log(chalk.green(response));
         })
         .catch((error) => {
-            console.log(error.message);
+            console.log(chalk.red(error.message));
         })
     });
     
@@ -87,7 +102,16 @@ const run = async () => {
     .command('register')
     .description('create TotalCross account')
     .action(async () => {
+        console.log(chalk.bold('Complete the registration steps:\n'));
+
+        if (process.platform === "win32") {
+            console.log(chalk.bgRed('You must have problems with windows, we are working on it'));
+            
+        }
+
         var options = await interface.register()
+
+        console.log('\n');
 
         if (options.password !== options.confirm) {
             console.log('Password and confirmation are wrong');
@@ -102,10 +126,10 @@ const run = async () => {
 
         core.register(options)
         .then((response) => {
-            console.log(response.message);
+            console.log(chalk.green(response.message));
         })
         .catch((error) => {
-            console.log(error.message);
+            console.log(chalk.red(error.message));
         })
     });
 
