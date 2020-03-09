@@ -102,7 +102,7 @@ const run = async () => {
 
         core.register(options)
         .then((response) => {
-            console.log(response);
+            console.log(response.message);
         })
         .catch((error) => {
             console.log(error.message);
