@@ -1,6 +1,6 @@
 {
   "name": "@totalcross/totalcross-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "TotalCross CLI",
   "bin": {
     "totalcross": "./index.js"
@@ -16,6 +16,7 @@
   "author": "Allan C., @acmlira",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^3.0.0",
     "child_process": "^1.0.2",
     "commander": "^4.1.1",
     "configstore": "^5.0.0",
@@ -26,7 +27,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "scp": "0.0.3",
-    "totalcross-core-dev": "1.0.1",
+    "totalcross-core-dev": "1.0.4",
     "xml-js": "^1.6.11"
   }
 }
