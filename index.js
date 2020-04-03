@@ -6,7 +6,7 @@ const interface = require(__basedir + '/lib/interface')
 const program = require('commander');
 const ora = require('ora');
 const chalk = require('chalk');
-
+const client = require('scp2');
 
 const run = async () => { 
     
@@ -36,6 +36,8 @@ const run = async () => {
         })
         .catch((error) => {
             console.log(chalk.red(error.message));
+            console.log(chalk.yellow('\nReport this error here https://github.com/TotalCross/totalcross-npm-cli'));
+            
         })
     });
     
@@ -52,7 +54,12 @@ const run = async () => {
         })
         .catch((error) => {
             spinner.stop();
+
+            console.log(error);
+            
+
             console.log(chalk.red('Packaging failed'));
+            console.log(chalk.yellow('\nReport this error here https://github.com/TotalCross/totalcross-npm-cli'));
         })
     });
     
@@ -62,21 +69,26 @@ const run = async () => {
     .action(async () => {
         console.log(chalk.bold('Deploy wizard!\n'));
 
+        if (process.platform === "win32") {
+            console.log(chalk.bgRed('You must have problems with windows, we are working on it'));
+            
+        }
         let options = await interface.deploy();
 
         console.log('\n');
-
-        core.deploy({
+        client.scp('target/install/linux_arm/', {
             username: options.username,
             host: options.host,
-            path: options.path
-        })
-        .then((response) => {
-            console.log(chalk.green(response));
-        })
-        .catch((error) => {
-            console.log(chalk.red(error.message));
-        })
+            path: options.path,
+            password: options.password
+        },(error)=> {
+            if (error == null) console.log(chalk.green('Success!'));
+            else {console.log(chalk.red(error));
+            console.log(chalk.yellow('\nReport this error here https://github.com/TotalCross/totalcross-npm-cli'));
+            }
+        });
+
+            // ;
     });
     
     program
@@ -95,6 +107,7 @@ const run = async () => {
         })
         .catch((error) => {
             console.log(chalk.red(error.message));
+            console.log(chalk.yellow('\nReport this error here https://github.com/TotalCross/totalcross-npm-cli'));
         })
     });
     
@@ -104,10 +117,6 @@ const run = async () => {
     .action(async () => {
         console.log(chalk.bold('Complete the registration steps:\n'));
 
-        if (process.platform === "win32") {
-            console.log(chalk.bgRed('You must have problems with windows, we are working on it'));
-            
-        }
 
         var options = await interface.register()
 
@@ -130,10 +139,11 @@ const run = async () => {
         })
         .catch((error) => {
             console.log(chalk.red(error.message));
+            console.log(chalk.yellow('\nReport this error here https://github.com/TotalCross/totalcross-npm-cli'));
         })
     });
 
-    program.version('TotalCross CLI v1.1.2 (Alpha)')
+    program.version('TotalCross CLI v1.2.0 (Alpha)')
     program.parse(process.argv);
 }
 
